@@ -10,17 +10,37 @@ namespace CS321_W4D1_BookAPI.ApiModels
 
         public static BookModel ToApiModel(this Book book)
         {
-            // TODO: map the Book domain object to a BookModel
-            return new BookModel
-            {
-            };
+           // return a new BookModel and copy the
+             // property values over from the Book
+             return new BookModel
+             {
+                 Id = book.Id,
+                 Title = book.Title,
+                 Genre = book.Genre,
+                 OriginalLanguage = book.OriginalLanguage,
+                 PublicationYear = book.PublicationYear,
+                 PublisherId = book.PublisherId,
+                 AuthorId = book.AuthorId,
+                 // concatenate the author's name properties and use it as the value of
+                 // Author. Use null if the Author is null.
+                 Author = book.Author != null
+                     ? book.Author.LastName + ", " + book.Author.FirstName
+                     : null
+             };
         }
 
         public static Book ToDomainModel(this BookModel bookModel)
         {
-            // TODO: map the BookModel to a Book domain object
             return new Book
             {
+                Id = bookModel.Id,
+                Title = bookModel.Title,
+                Genre = Book.Genre,
+                OriginalLanguage = bookModel.OriginalLanguage,
+                PublicationYear = bookModel.PublicationYear,
+                PublisherId = bookModel.PublisherId,
+                AuthorId = bookModel.AuthorId,
+
             };
         }
 
